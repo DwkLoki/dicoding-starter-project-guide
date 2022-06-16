@@ -2,12 +2,13 @@
 /* eslint-disable no-console */
 import UrlParser from '../../routes/url-parser';
 import RestaurantDb from '../../data/restaurantdb';
-import { createRestaurantDetailTemplate } from '../templates/template-creator';
+import { createRestaurantDetailTemplate, createLikeButtonTemplate } from '../templates/template-creator';
 
 const Detail = {
   async render() {
     return `
       <div id="restaurant" class="restaurant"></div>
+      <div id="likeButtonContainer"></div>
     `;
   },
 
@@ -15,8 +16,10 @@ const Detail = {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const restaurant = await RestaurantDb.detailRestaurant(url.id);
     const restaurantContainer = document.querySelector('#restaurant');
+    const likeButtonContainer = document.querySelector('#likeButtonContainer');
     restaurantContainer.innerHTML = createRestaurantDetailTemplate(restaurant);
-    console.log(restaurant);
+    likeButtonContainer.innerHTML = createLikeButtonTemplate();
+    // console.log(restaurant);
   },
 };
 
