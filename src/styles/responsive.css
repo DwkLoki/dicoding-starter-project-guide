@@ -2,12 +2,18 @@
   .app-bar .app-bar__brand img {
     width: 40%;
   }
+  .app-bar .app-bar__navigation {
+    top: 90px;
+  }
+  .app-bar .app-bar__navigation.open {
+    top: 90px;
+  }
 }
 
 @media screen and (min-width: 650px) {
   .app-bar {
     grid-template-columns: 1fr auto;
-    padding: 8px 32px;
+    padding: 8px 20px;
   }
  
   .app-bar .app-bar__menu {
@@ -47,11 +53,68 @@
     grid-column-start: 1;
     grid-column-end: 3;
   }
+
+  .restaurant .restaurant__poster {
+    min-width: 700px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: center;
+    margin: 35px 0;
+  }
+
+  .menu .menu-makanan-container, .menu .menu-minuman-container {
+    width: 40%;
+    border: 2px solid #ffd234;
+    background-color: #ffd234;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 0 5px;
+  }
+
+  .menu .menu-makanan-container li, .menu .menu-minuman-container li{
+    list-style-type: none;
+    padding: 5px 0;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .app-bar .app-bar__brand img {
     width: 25%;
+  }
+
+  .restaurant .restaurant__poster {
+    min-width: 500px;
+    display: flex;
+    justify-content: start;
+  }
+
+  .restaurant {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 700px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 0 30px;
+  }
+
+  .menu .menu-makanan-container, .menu .menu-minuman-container {
+    width: 30%;
+    margin: 0 15px;
+  }
+
+  .review-customer-container {
+    width: 85%;
+    margin: 10px auto;
+  }
+
+  .restaurant .restaurant__info h3 {
+    margin: 0;
+    text-align: start;
   }
 }
  
@@ -69,7 +132,17 @@
     width: 20%;
   }
   .restaurants {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 2fr);
+    padding: 0 80px;
+    gap: 40px;
+  }
+
+  .menu .menu-makanan-container, .menu .menu-minuman-container {
+    width: 25%;
+  }
+
+  .review-customer-container {
+    width: 80%;
   }
 }
  

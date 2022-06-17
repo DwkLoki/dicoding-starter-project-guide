@@ -7,7 +7,7 @@ const Favorite = {
   async render() {
     return `
       <div class="content">
-        <h2 class="content__heading">Your Liked Restaurant</h2>
+        <h2 class="content__heading favorite-heading">Your Liked Restaurant</h2>
         <div id="restaurants" class="restaurants">
  
         </div>
@@ -23,7 +23,7 @@ const Favorite = {
       restaurantsContainer.innerHTML += createRestaurantItemTemplate(restaurant);
     });
 
-    console.log(restaurants);
+    // console.log(restaurants);
   },
 };
 

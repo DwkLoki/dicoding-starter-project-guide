@@ -3,14 +3,38 @@
 /* eslint-disable no-console */
 import UrlParser from '../../routes/url-parser';
 import RestaurantDb from '../../data/restaurantdb';
-import { createRestaurantDetailTemplate, createLikeButtonTemplate } from '../templates/template-creator';
+import {
+  createRestaurantDetailTemplate,
+  createRestaurantFoodMenu,
+  createRestaurantDrinkMenu,
+  createReviewCustomer,
+  createLikeButtonTemplate,
+} from '../templates/template-creator';
 import LikeButtonInitiator from '../../utils/like-button-initiator';
 
 const Detail = {
   async render() {
     return `
-      <div id="restaurant" class="restaurant"></div>
-      <div id="likeButtonContainer"></div>
+      <div class="restaurant-detail">
+        <div id="restaurant" class="restaurant"></div>
+
+        <div id="menu" class="menu">
+          <div class="menu-makanan-container">
+            <h3 tabindex="0">menu makanan</h3>
+            <div id="menuMakanan" class="menu-makanan"></div>
+          </div>
+          <div class="menu-minuman-container">
+            <h3 tabindex="0">menu minuman</h3>
+            <div id="menuMinuman" class="menu-minuman"></div>
+          </div>
+        </div>
+
+        <div id="reviewCustomer" class="review-customer">
+          <h3 tabindex="0">Apa kata mereka soal resto ini</h3>
+        </div>
+
+        <div id="likeButtonContainer"></div>
+      </div>
     `;
   },
 
@@ -18,9 +42,22 @@ const Detail = {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const restaurantDetail = await RestaurantDb.detailRestaurant(url.id);
     const restaurantContainer = document.querySelector('#restaurant');
-    // const likeButtonContainer = document.querySelector('#likeButtonContainer');
     restaurantContainer.innerHTML = createRestaurantDetailTemplate(restaurantDetail);
-    // likeButtonContainer.innerHTML = createLikeButtonTemplate();
+
+    const menuMakanan = document.querySelector('#menuMakanan');
+    restaurantDetail.restaurant.menus.foods.forEach((foodMenu) => {
+      menuMakanan.innerHTML += createRestaurantFoodMenu(foodMenu);
+    });
+
+    const menuMinuman = document.querySelector('#menuMinuman');
+    restaurantDetail.restaurant.menus.drinks.forEach((drinkMenu) => {
+      menuMinuman.innerHTML += createRestaurantDrinkMenu(drinkMenu);
+    });
+
+    const reviewCustomerContainer = document.querySelector('#reviewCustomer');
+    restaurantDetail.restaurant.customerReviews.forEach((customerReview) => {
+      reviewCustomerContainer.innerHTML += createReviewCustomer(customerReview);
+    });
 
     LikeButtonInitiator.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),
@@ -30,10 +67,9 @@ const Detail = {
         description: restaurantDetail.restaurant.description,
         rating: restaurantDetail.restaurant.rating,
         pictureId: restaurantDetail.restaurant.pictureId,
-        city: restaurantDetail.restaurant.city,
       },
     });
-    // console.log(restaurantDetail);
+    console.log(restaurantDetail.restaurant);
   },
 };
 
