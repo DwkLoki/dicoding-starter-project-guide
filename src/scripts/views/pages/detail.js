@@ -8,7 +8,6 @@ import {
   createRestaurantFoodMenu,
   createRestaurantDrinkMenu,
   createReviewCustomer,
-  createLikeButtonTemplate,
 } from '../templates/template-creator';
 import LikeButtonInitiator from '../../utils/like-button-initiator';
 
@@ -21,11 +20,11 @@ const Detail = {
         <div id="menu" class="menu">
           <div class="menu-makanan-container">
             <h3 tabindex="0">menu makanan</h3>
-            <div id="menuMakanan" class="menu-makanan"></div>
+            <ul id="menuMakanan" class="menu-makanan"></ul>
           </div>
           <div class="menu-minuman-container">
             <h3 tabindex="0">menu minuman</h3>
-            <div id="menuMinuman" class="menu-minuman"></div>
+            <ul id="menuMinuman" class="menu-minuman"></ul>
           </div>
         </div>
 

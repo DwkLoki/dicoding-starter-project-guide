@@ -22,8 +22,6 @@ const Favorite = {
     restaurants.forEach((restaurant) => {
       restaurantsContainer.innerHTML += createRestaurantItemTemplate(restaurant);
     });
-
-    // console.log(restaurants);
   },
 };
 

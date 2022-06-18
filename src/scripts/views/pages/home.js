@@ -18,13 +18,10 @@ const Home = {
 
   async afterRender() {
     const restaurants = await RestaurantDb.restaurantList();
-    // console.log(restaurants);
     const restaurantContainer = document.querySelector('#restaurants');
     restaurants.forEach((restaurant) => {
       restaurantContainer.innerHTML += createRestaurantItemTemplate(restaurant);
     });
-
-    // console.log(restaurants);
   },
 };
 
