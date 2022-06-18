@@ -68,7 +68,7 @@ const Detail = {
         pictureId: restaurantDetail.restaurant.pictureId,
       },
     });
-    console.log(restaurantDetail.restaurant);
+    // console.log(restaurantDetail.restaurant);
   },
 };
 
