@@ -277,4 +277,6 @@ footer p {
 footer p a {
   color: #ffd234;
   text-decoration: none;
+  min-width: 44px;
+  min-height: 44px;
 }
