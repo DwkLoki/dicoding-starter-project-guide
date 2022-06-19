@@ -8,7 +8,7 @@ const Home = {
     return `
       ${heroImage}
       <div class="content">
-        <h2 tabindex="0" class="content__heading">Explore Restaurants</h2>
+        <h2 class="content__heading">Explore Restaurants</h2>
         <div id="restaurants" class="restaurants">
  
         </div>
