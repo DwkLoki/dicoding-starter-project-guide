@@ -9,7 +9,7 @@ import {
   createRestaurantDrinkMenu,
   createReviewCustomer,
 } from '../templates/template-creator';
-import LikeButtonInitiator from '../../utils/like-button-initiator';
+import LikeButtonPresenter from '../../utils/like-button-presenter';
 
 const Detail = {
   async render() {
@@ -58,7 +58,7 @@ const Detail = {
       reviewCustomerContainer.innerHTML += createReviewCustomer(customerReview);
     });
 
-    LikeButtonInitiator.init({
+    LikeButtonPresenter.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),
       restaurant: {
         id: restaurantDetail.restaurant.id,
