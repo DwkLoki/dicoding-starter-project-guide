@@ -93,6 +93,8 @@
 
   footer p a {
     padding: 12px 0;
+    min-width: 44px;
+    min-height: 44px;
   }
 }
 
