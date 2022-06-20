@@ -1,12 +1,13 @@
+/* eslint-disable import/extensions */
 /* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 import FavoriteRestaurantSearchPresenter from '../src/scripts/views/pages/liked-restaurants/favorite-restaurant-search-presenter';
 import FavoriteRestaurantIdb from '../src/scripts/data/favorite-restaurant-idb';
+import FavoriteRestaurantSearchView from '../src/scripts/views/pages/liked-restaurants/favorite-restaurant-search-view';
 
 describe('Searching restaurants', () => {
   let presenter;
   let favoriteRestaurants;
+  let view;
 
   const searchRestaurants = (query) => {
     const queryElement = document.getElementById('query');
@@ -15,21 +16,15 @@ describe('Searching restaurants', () => {
   };
 
   const setRestaurantSearchContainer = () => {
-    document.body.innerHTML = `
-      <div id="restaurant-search-container">
-        <input id="query" type="text">
-        <div class="restaurant-result-container">
-          <ul class="restaurants">
-          </ul>
-        </div>
-      </div>
-    `;
+    view = new FavoriteRestaurantSearchView();
+    document.body.innerHTML = view.getTemplate();
   };
 
   const constructPresenter = () => {
     favoriteRestaurants = spyOnAllFunctions(FavoriteRestaurantIdb);
     presenter = new FavoriteRestaurantSearchPresenter({
       favoriteRestaurants,
+      view,
     });
   };
 
@@ -52,7 +47,6 @@ describe('Searching restaurants', () => {
     });
 
     it('should show the found restaurant', () => {
-    // presenter._showFoundRestaurant([{ id: 1, title: 'Restaurant Satu' }]);
       presenter._showFoundRestaurants([{ id: 1 }]);
       expect(document.querySelectorAll('.restaurant').length).toEqual(1);
 
@@ -145,18 +139,24 @@ describe('Searching restaurants', () => {
           done();
         });
 
-      favoriteRestaurants.searchRestaurants.withArgs('restaurant a').and.returnValues([]);
+      favoriteRestaurants.searchRestaurants.withArgs('restaurant a')
+        .and
+        .returnValues([]);
 
       searchRestaurants('restaurant a');
     });
 
     it('should not show any restaurant', (done) => {
-      document.getElementById('restaurant-search-container').addEventListener('restaurants:searched:updated', () => {
-        expect(document.querySelectorAll('.restaurant').length).toEqual(0);
-        done();
-      });
+      document.getElementById('restaurant-search-container')
+        .addEventListener('restaurants:searched:updated', () => {
+          expect(document.querySelectorAll('.restaurant').length)
+            .toEqual(0);
+          done();
+        });
 
-      favoriteRestaurants.searchRestaurants.withArgs('restaurant a').and.returnValues([]);
+      favoriteRestaurants.searchRestaurants.withArgs('restaurant a')
+        .and
+        .returnValues([]);
 
       searchRestaurants('restaurant a');
     });
