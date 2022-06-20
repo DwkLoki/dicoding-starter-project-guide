@@ -1,3 +1,5 @@
+/* eslint-disable no-empty-function */
+/* eslint-disable no-unused-vars */
 /* eslint-disable consistent-return */
 /* eslint-disable linebreak-style */
 import { openDB } from 'idb';
@@ -32,6 +34,7 @@ const FavoriteRestaurants = {
   async deleteRestaurant(id) {
     return (await dbPromise).delete(OBJECT_STORE_NAME, id);
   },
+  async searchRestaurants(query) {},
 };
 
 export default FavoriteRestaurants;
