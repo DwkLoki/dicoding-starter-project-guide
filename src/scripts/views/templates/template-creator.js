@@ -36,15 +36,15 @@ const createReviewCustomer = (review) => `
 const createRestaurantItemTemplate = (restaurant) => `
   <div class="restaurant-item" aria-label="Item restoran ${restaurant.name}">
     <div class="restaurant-item__header">
-      <img class="restaurant-item__header__poster" alt="Gambar restoran ${restaurant.name}"
+      <img class="restaurant-item__header__poster" alt="${restaurant.name || '-'}"
            src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}">
       <div class="restaurant-item__header__rating">
-        <p>⭐️<span class="restaurant-item__header__rating__score">rating ${restaurant.rating}</span></p>
+        <p>⭐️<span class="restaurant-item__header__rating__score">rating ${restaurant.rating || '-'}</span></p>
       </div>
     </div>
     <div class="restaurant-item__content">
-      <h3><a href="${`/#/detail/${restaurant.id}`}">${restaurant.name}</a></h3>
-      <p>${restaurant.description}</p>
+      <h3 class="restaurant__title"><a href="${`/#/detail/${restaurant.id}`}">${restaurant.name || '-'}</a></h3>
+      <p>${restaurant.description || '-'}</p>
     </div>
   </div>
 `;
