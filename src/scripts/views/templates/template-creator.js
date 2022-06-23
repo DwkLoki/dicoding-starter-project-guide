@@ -3,7 +3,7 @@ import CONFIG from '../../globals/config';
 
 const createRestaurantDetailTemplate = (restaurant) => `
   <h2 class="restaurant__title">${restaurant.restaurant.name}</h2>
-  <img class="restaurant__poster" src="${CONFIG.BASE_IMAGE_URL + restaurant.restaurant.pictureId}" alt="gambar restoran ${restaurant.restaurant.name}" />
+  <img class="lazyload restaurant__poster" data-src="${CONFIG.BASE_IMAGE_URL + restaurant.restaurant.pictureId}" alt="gambar restoran ${restaurant.restaurant.name}" />
   <div class="restaurant__info">
     <h3>Information</h3>
     <h4>Alamat</h4>
@@ -36,8 +36,8 @@ const createReviewCustomer = (review) => `
 const createRestaurantItemTemplate = (restaurant) => `
   <div class="restaurant-item" aria-label="Item restoran ${restaurant.name}">
     <div class="restaurant-item__header">
-      <img class="restaurant-item__header__poster" alt="${restaurant.name || '-'}"
-           src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}">
+      <img class="lazyload restaurant-item__header__poster" alt="${restaurant.name || '-'}"
+           data-src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}">
       <div class="restaurant-item__header__rating">
         <p>⭐️<span class="restaurant-item__header__rating__score">rating ${restaurant.rating || '-'}</span></p>
       </div>
@@ -63,7 +63,10 @@ const createUnlikeRestaurantButtonTemplate = () => `
 
 const heroImage = `
   <div class="hero-element">
-    <img src="./heros/hero-image_2.jpg" alt="gambar utama website">
+    <picture>
+      <source media="(max-width: 600px)" srcset="./heros/hero-image_2-small.jpg">
+      <img src="./heros/hero-image_2-large.jpg" alt="gambar utama website">
+    </picture>
   </div>
 `;
 
