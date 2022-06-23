@@ -1,6 +1,10 @@
 var serviceWorkerOption = {
   "assets": [
+    "/0.bundle.js",
     "/bundle.js",
+    "/2.bundle.js",
+    "/3.bundle.js",
+    "/4.bundle.js",
     "/favicon.png",
     "/manifest.json",
     "/resto-logo.png",
